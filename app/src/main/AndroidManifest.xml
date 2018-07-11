@@ -24,12 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cust_First_Screen"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Cust_First_Screen"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Register_Mobile"
-            android:parentActivityName=".Cust_First_Screen"
-            />
+            android:parentActivityName=".Cust_First_Screen" />
         <activity
             android:name=".SignUp"
             android:parentActivityName=".Register_Mobile" />
@@ -57,6 +57,9 @@
         <activity
             android:name=".PolicyViewer"
             android:parentActivityName=".MyPolicy" />
+        <activity
+            android:name=".EditCustomerInfo"
+            android:parentActivityName=".Customer_info" />
     </application>
 
 </manifest>
