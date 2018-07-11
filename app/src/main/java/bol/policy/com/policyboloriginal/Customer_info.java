@@ -130,11 +130,11 @@ public class Customer_info extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*switch (item.getItemId()){
-            case R.id.add_member:
-                startActivity(new Intent(Customer_info.this, Add_contact.class));
+        switch (item.getItemId()){
+            case R.id.edit_profile:
+                startActivity(new Intent(Customer_info.this, EditCustomerInfo.class));
                 break;
-        }*/
+        }
         return super.onOptionsItemSelected(item);
     }
 }
