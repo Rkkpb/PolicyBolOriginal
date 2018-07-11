@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_customer"
+            android:icon="@drawable/ic_cust_info"
+            android:title="Customer Information" />
+        <item
+            android:id="@+id/nav_policies"
+            android:icon="@drawable/ic_my_policy"
+            android:title="My Policies" />
+        <item
+            android:id="@+id/nav_emergency_contact"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Emergency Contact" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="SOS History" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_coupon"
+            android:title="Coupons &amp; Discount" />
+        <item
+            android:id="@+id/nav_referus"
+            android:icon="@drawable/ic_refer"
+            android:title="Refer Us" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_contact"
+            android:title="About Us" />
+        <item
+            android:id="@+id/terms"
+            android:icon="@android:drawable/ic_menu_crop"
+            android:title="Terms &amp; Conditions" />
+        <item android:id="@+id/logout"
+            android:icon="@android:drawable/ic_menu_crop"
+            android:title="@string/logout"/>
+    </group>
+</menu>

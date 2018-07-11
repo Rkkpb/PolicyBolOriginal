@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/nav_header_vertical_spacing"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:drawableLeft="@drawable/ic_customer_id"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+
+                <TextView
+                    android:id="@+id/customer_id"
+                    android:layout_width="0dp"  
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_name" />
+
+                <TextView
+                    android:id="@+id/c_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:drawableLeft="@drawable/ic_gender"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_gender" />
+
+                <TextView
+                    android:id="@+id/c_gender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:drawableLeft="@drawable/ic_calender"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_dob" />
+
+                <TextView
+                    android:id="@+id/c_dob"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/ic_mail"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_email" />
+
+                <TextView
+                    android:id="@+id/c_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_mobile" />
+
+                <TextView
+                    android:id="@+id/c_mobile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:drawableLeft="@drawable/ic_favorite"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_mar_status" />
+
+                <TextView
+                    android:id="@+id/c_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/sign_up_cust_id" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="@dimen/padding_5"
+                    android:drawableLeft="@drawable/ic_address"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/cust_add" />
+
+                <TextView
+                    android:id="@+id/c_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right|end|center_vertical"
+                    android:padding="@dimen/fab_margin"
+                    android:text="@string/otp_title" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_sep"
+                android:background="@color/colorsecApp" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

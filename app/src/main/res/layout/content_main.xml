@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <com.skyfishjy.library.RippleBackground xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorAppBg"
+        app:rb_color="@android:color/holo_red_dark"
+        app:rb_duration="3000"
+        app:rb_radius="30dp"
+        app:rb_rippleAmount="4"
+        app:rb_scale="3">
+
+        <TextView
+            android:id="@+id/centerImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/sos_image"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="@string/btn_sos"
+            android:textSize="30sp"
+            android:textColor="@color/colortext"
+            android:textStyle="bold" />
+    </com.skyfishjy.library.RippleBackground>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/cust_info"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_weight="0.5"
+                android:background="@drawable/home_button"
+                android:drawableLeft="@drawable/ic_cust_info"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/fab_margin"
+                android:text="@string/btn_cust_info"
+                android:textColor="@android:color/white" />
+            />
+
+            <TextView
+                android:id="@+id/btn_my_policy"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_weight="0.5"
+                android:layout_gravity="center"
+                android:background="@drawable/home_button"
+                android:drawableLeft="@drawable/ic_my_policy"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/fab_margin"
+                android:text="@string/btn_my_policy"
+                android:textColor="@android:color/white" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/btn_refer"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_weight="0.5"
+                android:background="@drawable/home_button"
+                android:drawableLeft="@drawable/ic_refer"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:layout_gravity="center"
+                android:padding="@dimen/fab_margin"
+                android:text="@string/btn_refer_us"
+                android:textColor="@android:color/white" />
+            />
+
+            <TextView
+                android:id="@+id/btn_co_dis"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_weight="0.5"
+                android:background="@drawable/home_button"
+                android:drawableLeft="@drawable/ic_coupon"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/fab_margin"
+                android:text="@string/btn_co_dis"
+                android:textColor="@android:color/white" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/btn_upload"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_weight="0.5"
+                android:background="@drawable/home_button"
+                android:drawableLeft="@drawable/ic_refer"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/fab_margin"
+                android:text="@string/btn_upload"
+                android:textColor="@android:color/white" />
+            />
+
+            <TextView
+                android:id="@+id/btn_sell_purchase"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_weight="0.5"
+                android:background="@drawable/home_button"
+                android:drawableLeft="@drawable/ic_coupon"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="@dimen/fab_margin"
+                android:text="@string/btn_sell_purchase"
+                android:textColor="@android:color/white" />
+        </TableRow>
+    </TableLayout>
+
+    <android.support.design.circularreveal.cardview.CircularRevealCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:cardBackgroundColor="@color/colorApp"
+        app:cardCornerRadius="@dimen/padding_5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_5"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_gravity="center"
+                android:text="@string/below_text"
+                android:textColor="@color/colortext" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:background="@drawable/white_button"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="@dimen/padding_5"
+                android:paddingBottom="@dimen/padding_5"
+                android:text="@string/btn_callus" />
+        </LinearLayout>
+    </android.support.design.circularreveal.cardview.CircularRevealCardView>
+</android.support.constraint.ConstraintLayout>
