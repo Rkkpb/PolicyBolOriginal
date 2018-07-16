@@ -36,6 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*THis class shown list of all SoS Customers*/
 public class Emergency_contact extends AppCompatActivity {
     @BindView(R.id.all_emerg_contact)
     RecyclerView all_contacts_list;
@@ -151,13 +152,13 @@ public class Emergency_contact extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.emergency_menu,menu);
+        getMenuInflater().inflate(R.menu.emergency_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.add_member:
                 startActivity(new Intent(Emergency_contact.this, Add_contact.class));
                 break;

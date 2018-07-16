@@ -32,6 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*Splash Screen checked user First time or existing*/
 public class SplashScreen extends AppCompatActivity implements Animation.AnimationListener {
     Animation animation;
     String cust_id, verifycode;

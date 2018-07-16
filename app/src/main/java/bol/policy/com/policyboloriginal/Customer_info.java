@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/* Existing Customer Information */
 public class Customer_info extends AppCompatActivity {
     @BindView(R.id.customer_id)
     TextView cust_id;
@@ -94,22 +95,22 @@ public class Customer_info extends AppCompatActivity {
             try {
                 StringBuffer cust_Address = new StringBuffer();
                 if (!jsonObject.isNull("housetype")) {
-                    cust_Address.append(jsonObject.getString("housetype")+" ");
+                    cust_Address.append(jsonObject.getString("housetype") + " ");
                 }
                 if (!jsonObject.isNull("houseno")) {
-                    cust_Address.append(jsonObject.getString("houseno")+",");
+                    cust_Address.append(jsonObject.getString("houseno") + ",");
                 }
                 if (!jsonObject.isNull("streetname")) {
-                    cust_Address.append(jsonObject.getString("streetname")+",");
+                    cust_Address.append(jsonObject.getString("streetname") + ",");
                 }
                 if (!jsonObject.isNull("city")) {
-                    cust_Address.append(jsonObject.getString("city")+",");
+                    cust_Address.append(jsonObject.getString("city") + ",");
                 }
                 if (!jsonObject.isNull("state")) {
-                    cust_Address.append(jsonObject.getString("state")+",");
+                    cust_Address.append(jsonObject.getString("state") + ",");
                 }
                 if (!jsonObject.isNull("country")) {
-                    cust_Address.append(jsonObject.getString("country")+" ");
+                    cust_Address.append(jsonObject.getString("country") + " ");
                 }
                 if (!jsonObject.isNull("pincode")) {
                     cust_Address.append(jsonObject.getString("pincode"));
@@ -122,15 +123,16 @@ public class Customer_info extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cust_info_menu,menu);
+        getMenuInflater().inflate(R.menu.cust_info_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.edit_profile:
                 startActivity(new Intent(Customer_info.this, EditCustomerInfo.class));
                 break;

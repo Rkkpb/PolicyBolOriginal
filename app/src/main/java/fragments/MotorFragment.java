@@ -40,6 +40,7 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/*My Policy Tab Motor Fragment*/
 public class MotorFragment extends Fragment implements SearchView.OnQueryTextListener {
     RecyclerView recyclerView;
     MyAdapter myAdapter;

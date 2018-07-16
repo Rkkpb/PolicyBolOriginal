@@ -39,6 +39,7 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/*My Policy Tab Other Fragment*/
 public class OtherFragment extends Fragment implements SearchView.OnQueryTextListener {
     RecyclerView recyclerView;
     MyAdapter myAdapter;

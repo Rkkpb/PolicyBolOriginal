@@ -23,22 +23,6 @@ public interface UserManagerInterface {
     @POST("checkotp")
     public Call<ResponseBody> registerUser(@Field("mobileno") String emailValue);
 
-
-    /*
-     *  @GET : Indicate this method will perform a http get action with the specified url.
-     *  @Query("userName") : Parse out the userName query parameter in the url and
-     *  assign the parsed out value to userNameValue parameter.
-     * */
-    @GET("checkotp")
-    public Call<UserDTO> getUserByName(@Query("mobileno") String mobileno);
-
-
-    /*
-     *  Similar with getUserByName method, this method will return all users in a list.
-     * */
-    @GET("checkotp")
-    public Call<List<UserDTO>> getUserAllList();
-
     @FormUrlEncoded
     @POST("verify_otp")
     Call<ResponseBody> registermobileno(@FieldMap Map<String, String> en_otp);

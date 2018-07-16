@@ -36,6 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*For Existing Regtister Mobile*/
 public class Register_Mobile extends AppCompatActivity implements View.OnClickListener {
     TextView reg_mob_title;
     TextInputEditText mobile_text;
@@ -166,6 +167,7 @@ public class Register_Mobile extends AppCompatActivity implements View.OnClickLi
         call.enqueue(callback);
     }
 
+    /*Dialog for OTP Verification*/
     private void opendialog() {
         final Dialog dialog = new Dialog(Register_Mobile.this, R.style.Theme_Dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

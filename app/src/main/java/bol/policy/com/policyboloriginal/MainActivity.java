@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.skyfishjy.library.RippleBackground;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity
     Vibrator vibrator;
     String TAG_RETROFIT_GET_POST = "PolicyBol";
     long[] mVibratePattern = new long[]{0, 400, 800, 600};
-    String cust_id,verifycode;
+    String cust_id, verifycode;
+    boolean soscheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,30 +81,10 @@ public class MainActivity extends AppCompatActivity
         rippleBackground = (RippleBackground) findViewById(R.id.content);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         contactlist.clear();
-
-        /*if (contactlist.isEmpty() || contactlist.size() < 1) {
-            final Dialog dialog = new Dialog(MainActivity.this, R.style.Theme_Dialog);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(R.layout.first_time_dialog);
-            dialog.setCancelable(false);
-            Button btn_addnow = (Button) dialog.findViewById(R.id.btn_addnow);
-            btn_addnow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this, Add_contact.class));
-                }
-            });
-            Button btn_goback = (Button) dialog.findViewById(R.id.btn_goback);
-            btn_goback.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                }
-            });
-            dialog.show();
-        }*/
         cust_info_service();
     }
+
+    /*Call to collect User Information*/
     private void cust_info_service() {
         SharedPreferences sharedPreferences = getSharedPreferences("PolicyBol", MODE_PRIVATE);
         cust_id = sharedPreferences.getString("custid", null);
@@ -144,6 +126,7 @@ public class MainActivity extends AppCompatActivity
                                     editor.putString("custinfo", jsonObject1);
                                     editor.commit();
                                     messageBuffer.append(response.message());
+                                    callwebservice();
                                 } else {
                                     messageBuffer.append(response.message());
                                 }
@@ -176,69 +159,101 @@ public class MainActivity extends AppCompatActivity
         };
         call.enqueue(callback);
     }
-    private void callwebservice() {
-        SharedPreferences sharedPreferences = getSharedPreferences("PolicyBol", MODE_PRIVATE);
-        String cust_id = sharedPreferences.getString("custid", null);
-        Call<ResponseBody> call = UserManager.getUserManagerService(null).soshit(cust_id);
-        Callback<ResponseBody> callback = new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                StringBuffer messageBuffer = new StringBuffer();
 
-                int statusCode = response.code();
-                if (statusCode == 200) {
-                    try {
-                        // Get return string.
-                        String returnBodyText = response.body().string();
-                        System.out.println("===click result==" + returnBodyText);
-                        TypeToken<RegisterResponse> typeToken = new TypeToken<RegisterResponse>() {
-                        };
-                        // Because return text is a json format string, so we should parse it manually.
-                        Gson gson = new Gson();
-                        // Get the response data list from JSON string.
-                        RegisterResponse registerResponseList = gson.fromJson(returnBodyText, typeToken.getType());
+    /* SoS Hit call */
+    private void callsos() {
+        if (soscheck) {
+            SharedPreferences sharedPreferences = getSharedPreferences("PolicyBol", MODE_PRIVATE);
+            String cust_id = sharedPreferences.getString("custid", null);
+            Call<ResponseBody> call = UserManager.getUserManagerService(null).soshit(cust_id);
+            Callback<ResponseBody> callback = new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    StringBuffer messageBuffer = new StringBuffer();
 
-                        if (registerResponseList != null) {
-                            JSONObject jsonObject = null;
-                            try {
-                                jsonObject = new JSONObject(returnBodyText.toString());
-                                boolean result = jsonObject.getBoolean("result");
-                                System.out.println("===clicked first===");
-                                if (result == true) {
-                                    System.out.println("===clicked===");
-                                    System.out.println("===result===" + jsonObject.toString());
-                                    messageBuffer.append(response.message());
+                    int statusCode = response.code();
+                    if (statusCode == 200) {
+                        try {
+                            // Get return string.
+                            String returnBodyText = response.body().string();
+                            System.out.println("===click result==" + returnBodyText);
+                            TypeToken<RegisterResponse> typeToken = new TypeToken<RegisterResponse>() {
+                            };
+                            // Because return text is a json format string, so we should parse it manually.
+                            Gson gson = new Gson();
+                            // Get the response data list from JSON string.
+                            RegisterResponse registerResponseList = gson.fromJson(returnBodyText, typeToken.getType());
+
+                            if (registerResponseList != null) {
+                                JSONObject jsonObject = null;
+                                try {
+                                    jsonObject = new JSONObject(returnBodyText.toString());
+                                    boolean result = jsonObject.getBoolean("result");
+                                    System.out.println("===clicked first===");
+                                    if (result == true) {
+                                        System.out.println("===clicked===");
+                                        System.out.println("===result===" + jsonObject.toString());
+                                        messageBuffer.append(response.message());
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                            } else {
+                                System.out.println("===clicked outer===");
                             }
-                        } else {
-                            System.out.println("===clicked outer===");
+                        } catch (IOException ex) {
+                            Log.e(TAG_RETROFIT_GET_POST, ex.getMessage());
                         }
-                    } catch (IOException ex) {
-                        Log.e(TAG_RETROFIT_GET_POST, ex.getMessage());
+                    } else {
+                        // If server return error.
+                        messageBuffer.append("Server return error code is ");
+                        messageBuffer.append(statusCode);
+                        messageBuffer.append("\r\n\r\n");
+                        messageBuffer.append("Error message is ");
+                        messageBuffer.append(response.message());
                     }
-                } else {
-                    // If server return error.
-                    messageBuffer.append("Server return error code is ");
-                    messageBuffer.append(statusCode);
-                    messageBuffer.append("\r\n\r\n");
-                    messageBuffer.append("Error message is ");
-                    messageBuffer.append(response.message());
+
+                    // Show a Toast message.
+                    Toast.makeText(getApplicationContext(), messageBuffer.toString(), Toast.LENGTH_LONG).show();
                 }
 
-                // Show a Toast message.
-                Toast.makeText(getApplicationContext(), messageBuffer.toString(), Toast.LENGTH_LONG).show();
-            }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        };
-        call.enqueue(callback);
-
+                }
+            };
+            call.enqueue(callback);
+        } else {
+            Toast.makeText(this, "No Sos Contact! Please Add..", Toast.LENGTH_SHORT).show();
+            daiologopen();
+        }
     }
+
+    /*Dialog open if there is no SoS Contact*/
+    private void daiologopen() {
+        if (contactlist.isEmpty() || contactlist.size() < 1) {
+            final Dialog dialog = new Dialog(MainActivity.this, R.style.Theme_Dialog);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.first_time_dialog);
+            dialog.setCancelable(false);
+            Button btn_addnow = (Button) dialog.findViewById(R.id.btn_addnow);
+            btn_addnow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, Add_contact.class));
+                }
+            });
+            Button btn_goback = (Button) dialog.findViewById(R.id.btn_goback);
+            btn_goback.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+            dialog.show();
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -287,14 +302,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_referus) {
             startActivity(new Intent(MainActivity.this, Refer_us.class));
-        }else if(id==R.id.logout){
+        } else if (id == R.id.logout) {
             SharedPreferences sharedPreferences = getSharedPreferences("PolicyBol", MODE_PRIVATE);
             sharedPreferences.edit().clear().commit();
             startActivity(new Intent(MainActivity.this, Cust_First_Screen.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            Intent intent=new Intent(MainActivity.this,Cust_First_Screen.class);
+            Intent intent = new Intent(MainActivity.this, Cust_First_Screen.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 finishAffinity();
-            }else{
+            } else {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
@@ -333,8 +348,97 @@ public class MainActivity extends AppCompatActivity
                         rippleBackground.stopRippleAnimation();
                     }
                 }, 15000);
-                callwebservice();
+                callsos();
                 break;
         }
+    }
+
+    /*Call this method to check SoS list*/
+    private void callwebservice() {
+        SharedPreferences sharedPreferences = getSharedPreferences("PolicyBol", MODE_PRIVATE);
+        String cust_id = sharedPreferences.getString("custid", null);
+        Call call = UserManager.getUserManagerService(null).getemergencycontact(cust_id);
+        Callback<ResponseBody> callback = new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                StringBuffer messageBuffer = new StringBuffer();
+
+                int statusCode = response.code();
+                if (statusCode == 200) {
+                    try {
+                        // Get return string.
+                        String returnBodyText = response.body().string();
+                        System.out.println("===click result==" + returnBodyText);
+                        TypeToken<RegisterResponse> typeToken = new TypeToken<RegisterResponse>() {
+                        };
+                        // Because return text is a json format string, so we should parse it manually.
+                        Gson gson = new Gson();
+                        // Get the response data list from JSON string.
+                        RegisterResponse registerResponseList = gson.fromJson(returnBodyText, typeToken.getType());
+
+                        if (registerResponseList != null) {
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(returnBodyText.toString());
+                                boolean result = jsonObject.getBoolean("result");
+                                System.out.println("===clicked first===");
+                                if (result == true) {
+                                    contactlist.clear();
+                                    System.out.println("===result===" + jsonObject.toString());
+                                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                                    System.out.println("===clicked===" + jsonArray.length());
+                                    if (jsonArray.length() > 0) {
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                            String em_id = jsonObject1.getString("em_id");
+                                            String contactperson = jsonObject1.getString("contactperson");
+                                            String contactmob = jsonObject1.getString("contactmob");
+                                            String relation = jsonObject1.getString("relation");
+
+                                            HashMap<String, String> hashMap = new HashMap<>();
+                                            hashMap.clear();
+                                            hashMap.put("em_id", em_id);
+                                            hashMap.put("contactperson", contactperson);
+                                            hashMap.put("contactmob", contactmob);
+                                            hashMap.put("relation", relation);
+
+                                            contactlist.add(hashMap);
+                                        }
+                                        messageBuffer.append(response.message());
+                                        soscheck = true;
+                                    } else {
+                                        soscheck = false;
+                                    }
+                                } else {
+                                    messageBuffer.append(response.message());
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            System.out.println("===clicked outer===");
+                        }
+                    } catch (IOException ex) {
+                        Log.e(TAG_RETROFIT_GET_POST, ex.getMessage());
+                    }
+                } else {
+                    // If server return error.
+                    messageBuffer.append("Server return error code is ");
+                    messageBuffer.append(statusCode);
+                    messageBuffer.append("\r\n\r\n");
+                    messageBuffer.append("Error message is ");
+                    messageBuffer.append(response.message());
+                }
+
+                // Show a Toast message.
+                Toast.makeText(getApplicationContext(), messageBuffer.toString(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        };
+        call.enqueue(callback);
     }
 }

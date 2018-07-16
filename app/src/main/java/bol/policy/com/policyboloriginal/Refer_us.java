@@ -47,6 +47,7 @@ import retrofit2.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
+/*Refer Us*/
 public class Refer_us extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -200,6 +201,7 @@ public class Refer_us extends AppCompatActivity implements View.OnClickListener,
         }
     }
 
+    /*Send Refer Us Data To Server*/
     private void callwebservice(String contactname, String contactno) {
         System.out.println("===customer id===" + contactname);
         Map<String, String> fieldmap = new HashMap<>();

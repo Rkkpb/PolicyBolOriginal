@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private ArrayList<HashMap<String, String>> mDataset;
     Context mContext;
 
+    // setFilter Method is used to filter data
     public void setFilter(ArrayList<HashMap<String, String>> filter) {
         //we have used hashmap,  find how to use it here
         mDataset = new ArrayList<HashMap<String, String>>();
@@ -31,43 +33,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
-   /* public void filter(String charText, ArrayList<HashMap<String, String>> myDataSet) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        System.out.println("===searchview===" + charText + "===" + myDataSet.size());
-        arraylist = new ArrayList<>();
-        arraylist.addAll(myDataSet);
-        mDataset.clear();
-        if (charText.length() == 0 || TextUtils.isEmpty(charText)) {
-            mDataset.addAll(myDataSet);
-            System.out.println("===searchview if===" + mDataset.size());
-        } else {
-            System.out.println("===searchview else===" + arraylist.size());
-            for (HashMap<String, String> wp : arraylist) {
-                System.out.println("===searchview hashmap===" + wp);
-                if (wp.get("contactperson").toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mDataset.add(wp);
-                }
-                if (wp.get("contactmob").toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mDataset.add(wp);
-                }
-                if (wp.get("relation").toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mDataset.add(wp);
-                }
-                if (wp.get("em_id").toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mDataset.add(wp);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }*/
-
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView pol_reg_no, pol_v_make, pol_hol_name;
-        public ImageView pdfview;
+        public Button pdfview;
 
         public ViewHolder(View v) {
             super(v);
@@ -75,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             pol_reg_no = (TextView) v.findViewById(R.id.pol_reg_no);
             pol_v_make = (TextView) v.findViewById(R.id.pol_v_make);
             pol_hol_name = (TextView) v.findViewById(R.id.pol_hol_name);
-            pdfview = (ImageView) v.findViewById(R.id.pdfview);
+            pdfview = (Button) v.findViewById(R.id.pdfview);
         }
     }
 

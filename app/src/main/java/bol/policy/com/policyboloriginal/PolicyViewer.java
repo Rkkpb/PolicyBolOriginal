@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/*To Show Policy in Pdf*/
 public class PolicyViewer extends AppCompatActivity {
     WebView mWebview;
 
