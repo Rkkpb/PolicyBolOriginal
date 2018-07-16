@@ -39,17 +39,19 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/*My Policy Tab Health Fragment*/
 public class HealthFragment extends Fragment implements SearchView.OnQueryTextListener {
     RecyclerView recyclerView;
     MyAdapter myAdapter;
     SearchView searchView;
-    ArrayList<HashMap<String,String>> myDataSet=new ArrayList<>();
+    ArrayList<HashMap<String, String>> myDataSet = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.health_view, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.motor_list);
-        myDataSet=new ArrayList<>();
+        myDataSet = new ArrayList<>();
         searchView = (SearchView) view.findViewById(R.id.search_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

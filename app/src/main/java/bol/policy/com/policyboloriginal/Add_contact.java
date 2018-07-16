@@ -46,6 +46,7 @@ import retrofit2.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
+/*TO Add new Contact in Emergency Contacts*/
 public class Add_contact extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -192,6 +193,7 @@ public class Add_contact extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    /* Webservice called to fetch data*/
     private void callwebservice(String contactname, String contactno) {
         System.out.println("===customer id===" + contactname);
         Map<String, String> fieldmap = new HashMap<>();

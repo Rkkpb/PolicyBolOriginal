@@ -17,6 +17,7 @@ import bol.policy.com.policyboloriginal.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/*This Adapter is used to show Saved Emergency Contacts*/
 public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.ViewHolder> {
     private ArrayList<HashMap<String, String>> mDataset;
 
@@ -37,20 +38,15 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.View
             edit_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    
-                }
-            });
-            del_btn=(ImageView)v.findViewById(R.id.delete);
-            edit_btn=(ImageView)v.findViewById(R.id.edit);
-            edit_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                    /*Used to edit save contact*/
                     Toast.makeText(edit_btn.getContext(), "You press edit button", Toast.LENGTH_SHORT).show();
                 }
             });
+            del_btn=(ImageView)v.findViewById(R.id.delete);
             del_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    /*Delete saved Emergency Contact*/
                     Toast.makeText(edit_btn.getContext(), "You press delete button", Toast.LENGTH_SHORT).show();
                 }
             });

@@ -30,6 +30,7 @@ import fragments.HealthFragment;
 import fragments.MotorFragment;
 import fragments.OtherFragment;
 
+/*To Show All My Policy*/
 public class MyPolicy extends AppCompatActivity {
 
     /**
